@@ -1,0 +1,8 @@
+*.spec
+*.log
+*.db
+/build/*
+/dist/*
+/apps/*
+license.txt
+/application/node_modules/

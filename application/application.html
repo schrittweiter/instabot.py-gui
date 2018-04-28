@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html class="uk-height-1-1" ng-app="app">
+
+<head>
+    <title>instabot.py -gui</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <!-- include dependencies -->
+    
+    <link rel="stylesheet" href="bower_components/proxima-nova-web-fonts/fonts/fonts.min.css" />
+    <link rel="stylesheet" href="bower_components/angular-carousel/dist/angular-carousel.min.css" />
+    <link rel="stylesheet" href="bower_components/themify-icons/css/themify-icons.css" />
+    <link rel="stylesheet" href="bower_components/uikit/dist/css/uikit.min.css" />
+    <link rel="stylesheet" href="bower_components/ng-tags-input/ng-tags-input.min.css" />
+
+    
+    <!-- include custom styles -->
+
+    <link rel="stylesheet" href="css/app.css" />
+    
+    <!-- include dependencies -->
+
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-touch/angular-touch.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-carousel/dist/angular-carousel.min.js"></script>
+    <script type="text/javascript" src="bower_components/uikit/dist/js/uikit.min.js"></script>
+    <script type="text/javascript" src="bower_components/uikit/dist/js/uikit-icons.min.js"></script>
+    <script type="text/javascript" src="bower_components/ng-tags-input/ng-tags-input.min.js"></script>
+
+    
+    <!-- include custom scripts and eel pseudeo -->
+
+    <script type="text/javascript" src="/eel.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+
+<body class="uk-height-1-1">
+    <div id="content" ng-controller="appController">
+        
+        <div class="uk-flex uk-flex-center uk-height-1-1">
+            <div style="width: 80%">
+                <img src="img/logo.png" alt="" style="display: block; margin: 50px auto 50px; width: 150px;">
+
+                <!-- login form -->
+
+                <form name="instabot_login_form" class="uk-margin" ng-if="states.view_login">
+                    <div class="uk-inline uk-width-1-1">
+                        
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="form-stacked-text">instagram username</label>
+                            <div class="uk-form-controls">
+                                <input class="uk-input" type="text" id="username" name="username" ng-model="bot.username" required />
+                            </div>
+                        </div>
+                       
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="form-stacked-text">instagram password</label>
+                            <div class="uk-form-controls">
+                                <input class="uk-input" type="password" id="password" name="password" ng-model="bot.password" required />
+                            </div>
+                        </div>
+                        
+                        <div class="uk-grid uk-margin ">   
+                            <div class="uk-width-1-2">
+                                <label class="uk-form-label" for="form-stacked-text">likes per day</label>
+                                <div class="uk-form-controls">
+                                    <input class="uk-input" type="number" id="likes" name="likes" ng-model="bot.likes" required />
+                                </div>
+                            </div>
+
+                            <div class="uk-width-1-2">
+                                <label class="uk-form-label" for="form-stacked-text">likes per tag</label>
+                                <div class="uk-form-controls">
+                                    <input class="uk-input" type="number" id="likes_tag" name="likes_tag" ng-model="bot.likes_tag" required />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="uk-grid uk-margin ">   
+                            <div class="uk-width-1-2">
+                                <label class="uk-form-label" for="form-stacked-text">follows per day</label>
+                                <div class="uk-form-controls">
+                                    <input class="uk-input" type="number" id="follows_day" name="follows_day" ng-model="bot.follows_day" required />
+                                </div>
+                            </div>
+
+                            <div class="uk-width-1-2">
+                                <label class="uk-form-label" for="form-stacked-text">unfollows per tag</label>
+                                <div class="uk-form-controls">
+                                    <input class="uk-input" type="number" id="unfollows_day" name="unfollows_day" ng-model="bot.unfollows_day" required />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="uk-margin uk-position-relative">
+                            <label class="uk-form-label" for="form-stacked-text">hashtag whitelist</label>
+                            <a href="#" style="color: #fff;" uk-tooltip="find new hashtags" class="uk-icon-link uk-margin-small-right uk-position-absolute uk-position-right" uk-icon="plus-circle" uk-toggle="target: #find_whitelist"></a>
+                            <div class="uk-form-controls">
+                                <tags-input id="hashtags_white" name="hashtags_white" ng-model="bot.hashtags_white" required></tags-input>
+                            </div>
+                        </div>
+
+                        <div class="uk-margin uk-position-relative">
+                            <label class="uk-form-label" for="form-stacked-text">hashtag blacklist</label>
+                            <a href="#" style="color: #fff;" uk-tooltip="find new hashtags" class="uk-icon-link uk-margin-small-right uk-position-absolute uk-position-right" uk-icon="plus-circle" uk-toggle="target: #find_whitelist"></a>
+                            <div class="uk-form-controls">
+                                <tags-input id="hashtags_black" name="hashtags_black" ng-model="bot.hashtags_black"></tags-input>
+                            </div>
+                        </div>
+
+                        <div class="uk-margin uk-position-relative">
+                            <label class="uk-form-label" for="form-stacked-text">user whitelist</label>
+                            <div class="uk-form-controls">
+                                <tags-input id="user_white" name="user_white" ng-model="bot.user_white"></tags-input>
+                            </div>
+                        </div>
+
+                        <div class="uk-margin uk-position-relative">
+                            <label class="uk-form-label" for="form-stacked-text">user blacklist</label>
+                            <div class="uk-form-controls">
+                                <tags-input id="user_black" name="user_black" ng-model="bot.user_black"></tags-input>
+                            </div>
+                        </div>
+
+                        <!-- submit form data -->
+
+                        <button class="uk-button uk-button-instabot uk-width-1-1 uk-button-default" ng-click="checkLogin(bot)" ng-disabled="instabot_login_form.$invalid">login into instagram</button>
+                    </div>
+                </form>
+
+                <!-- log form -->
+
+                <form name="instabot_log_form" class="uk-margin" ng-if="states.view_log">
+                    
+                    <div class="spinner-working">
+                      <div class="rect1"></div>
+                      <div class="rect2"></div>
+                      <div class="rect3"></div>
+                      <div class="rect4"></div>
+                      <div class="rect5"></div>
+                    </div>
+
+                    <div class="uk-inline uk-width-1-1 uk-panel-scrollable" id="scrollbar" uk-grid>
+                        <ul rn-carousel rn-carousel-transition="zoom" rn-carousel-controls class="bot-log">
+                            <li ng-if="logs.length <= 0">
+                                <div class="uk-inline">
+                                    <img src="img/icon.jpg" style="width: 100%;">
+                                </div>
+                            </li>
+                            <li ng-repeat="log in logs track by $index">
+                                <div class="uk-inline">
+                                    <span class="like"><span uk-icon="icon: heart"></span></span>
+                                    <img ng-src="{{log.thumbnail_url}}" alt="{{log.title}}">
+                                    <div class="uk-overlay uk-light uk-position-bottom">
+                                        <p><a class="uk-link-reset" ng-href="{{log.author_url}}" target="_blank">@{{log.author_name}}</a></p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+
+                <!-- loader -->
+
+                <div class="spinner" id="loader" ng-if="states.loader">
+                    <div class="double-bounce1"></div>
+                    <div class="double-bounce2"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="find_whitelist" class="uk-modal-full" uk-modal>
+            <div class="uk-modal-dialog uk-height-1-1">
+                <button class="uk-modal-close-full uk-close-large" type="button" uk-close></button>
+                <div class="uk-grid-collapse uk-child-width-1-1@s uk-flex-middle" uk-grid>
+                    <div class="uk-padding-large">
+                        <h2 class="color-instabot-py">get hashtags</h2>
+                        <p>Relevant hashtags will appear here. Banned and spammy tags are filtered out.</p>
+                        <form name="instabot_find_hashtag_white" class="uk-margin">
+                            <div class="uk-margin">
+                                <label class="uk-form-label" for="form-stacked-text">hashtag</label>
+                                <div class="uk-form-controls">
+                                    <input class="uk-input" type="text" id="hashtag" autocomplete="off" name="hashtag" ng-model="find.hashtag_white" required />
+                                </div>
+                            </div>
+
+                            <button class="uk-button uk-width-1-1 uk-button-primary" ng-click="findHashTag(find.hashtag_white,bot.hashtags_white,'find_whitelist')" ng-disabled="instabot_find_hashtag_white.$invalid">find hashtags</button>
+
+                        </form>
+
+                        <div class="results">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
