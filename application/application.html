@@ -43,11 +43,10 @@
         
         <div class="uk-flex uk-flex-center uk-height-1-1">
             <div style="width: 80%">
-                <img src="img/logo.png" alt="" style="display: block; margin: 50px auto 50px; width: 150px;">
 
                 <!-- login form -->
 
-                <form name="instabot_login_form" class="uk-margin" ng-if="states.view_login">
+                <form name="instabot_login_form" class="uk-margin uk-margin-large-top" ng-if="states.view_login">
                     <div class="uk-inline uk-width-1-1">
                         
                         <div class="uk-margin">
@@ -106,7 +105,6 @@
 
                         <div class="uk-margin uk-position-relative">
                             <label class="uk-form-label" for="form-stacked-text">hashtag blacklist</label>
-                            <a href="#" style="color: #fff;" uk-tooltip="find new hashtags" class="uk-icon-link uk-margin-small-right uk-position-absolute uk-position-right" uk-icon="plus-circle" uk-toggle="target: #find_whitelist"></a>
                             <div class="uk-form-controls">
                                 <tags-input id="hashtags_black" name="hashtags_black" ng-model="bot.hashtags_black"></tags-input>
                             </div>
