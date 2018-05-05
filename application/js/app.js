@@ -164,9 +164,9 @@ app.controller('appController', function appController($scope) {
                 temp_tags = (scope ? scope.bot.hashtags_white : []);
             }
 
+            // # create temp tags string for compare
 
             tags_compare = Array.prototype.map.call(temp_tags, s => s.text).toString();
-            console.log(tags_compare);
 
             if(data.results.length > 0) {
                 $(resultWrapper).html('');
